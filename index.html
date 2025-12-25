@@ -1,446 +1,749 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Independent People's Tribunal on The World Bank in India</title>
-  <meta name="description" content="An independent public record of testimony, evidence, and findings on World Bank policies and projects in India." />
-  <meta name="Keywords" content="World Bank, World Bank Group, Larry Summers, Lawrence Summers, India, Wolfowitz, Globalization, Globalisation, Neo-liberal, Neo-liberalism, Development, Development Politics, Human Rights, economic globalisation, economic globalization, international financial institution, IFI, anti-globalization, imperialism, neo-colonialism, neo-imperialism, water, privatization, narmada dam"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Independent People's Tribunal — World Bank in India</title>
+  <meta name="description" content="An independent public record of testimony, evidence, and findings on World Bank policies and projects in India.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --paper: #f4f1ea;
-      --ink: #141318;
-      --muted: #5b5663;
-
-      --accent: #ff3b3b;      /* protest red */
-      --accent2: #ffd400;     /* poster yellow */
-      --blue: #2b63ff;        /* punchy link blue */
-
-      --radius: 18px;
-      --radius2: 28px;
-      --shadow: 0 10px 30px rgba(0,0,0,.18);
-      --shadow2: 0 18px 55px rgba(0,0,0,.22);
-
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
-      --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    :root {
+      --bg-dark: #0a0a0b;
+      --bg-card: #111113;
+      --bg-card-hover: #18181b;
+      --text-primary: #f5f5f4;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent-red: #dc2626;
+      --accent-red-glow: rgba(220, 38, 38, 0.4);
+      --accent-gold: #fbbf24;
+      --accent-gold-glow: rgba(251, 191, 36, 0.3);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --warm-charcoal: #3a4244; 
+      /**--warm-charcoal:#282828;**/
+      /**--warm-charcoal:#5D6166; **/
+      --newspaper:#e8e0cc;
+      
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius: 16px;
+      --radius-lg: 24px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      --scroll: 0;
       background:
-        radial-gradient(1200px 800px at 20% -10%, rgba(255,59,59,.20), transparent 55%),
-        radial-gradient(900px 700px at 85% 10%, rgba(255,212,0,.20), transparent 55%),
-        radial-gradient(1000px 800px at 70% 105%, rgba(43,99,255,.18), transparent 60%),
-        var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.45;
+        radial-gradient(circle 500px at calc(50% + var(--scroll) * 30%) calc(10% + var(--scroll) * 80%), rgba(255, 180, 100, 0.6), transparent),
+        radial-gradient(circle 400px at calc(20% + var(--scroll) * 50%) calc(80% - var(--scroll) * 60%), rgba(100, 150, 200, 0.4), transparent),
+        radial-gradient(circle 600px at calc(80% - var(--scroll) * 40%) calc(50% + var(--scroll) * 30%), rgba(200, 100, 120, 0.35), transparent),
+        linear-gradient(180deg, rgba(255,250,240,0.3) 0%, transparent 30%, transparent 70%, rgba(200,180,150,0.2) 100%),
+        var(--newspaper);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    a{ color: inherit; }
-    .wrap{
-      width:min(1120px, 92vw);
-      margin: 0 auto;
-      padding: 18px 0 64px;
-    }
-
-    /* subtle grain */
-    .grain{
+    /* Animated background grain */
+    .grain {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
-      opacity: .18;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      mix-blend-mode: multiply;
+      z-index: 1000;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
-    /* Top bar */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 18px;
-      padding: 12px 14px;
-      border: 2px solid rgba(20,19,24,.14);
-      border-radius: var(--radius2);
-      background: rgba(244,241,234,.85);
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 10px;
-      z-index: 10;
+    /* Global container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 2rem);
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      min-width: 260px;
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 0;
+      background: --newspaper;
+      backdrop-filter: blur(12px);
     }
 
-    /* LOGO */
-    .logoWrap{
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.7);
-      border: 1px solid rgba(20,19,24,.12);
-      box-shadow: 0 10px 26px rgba(0,0,0,.10);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
     }
-    .logoWrap img{
-      width: 46px;
-      height: 46px;
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark img {
+      width: 36px;
+      height: 36px;
       object-fit: contain;
-      display:block;
     }
 
-    .brand h1{
-      margin:0;
-      font-family: var(--serif);
-      font-weight: 800;
-      letter-spacing: .2px;
-      font-size: 16px;
-      line-height: 1.1;
-    }
-    .brand p{
-      margin: 4px 0 0;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
+    .logo-text {
+      display: flex;
+      flex-direction: column;
     }
 
-    .nav{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      justify-content:flex-end;
-    }
-    .nav a{
-      text-decoration:none;
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(20,19,24,.14);
-      background: rgba(255,255,255,.55);
-      transition: transform .12s ease, background .12s ease;
-    }
-    .nav a:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.9);
-    }
-    .nav a.cta{
-      border-color: rgba(255,59,59,.35);
-      background: rgba(255,59,59,.10);
+    .logo-text span:first-child {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
 
-    /* Hero */
-    .hero{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
+    .logo-text span:last-child {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.5rem 0.875rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.05);
+    }
+
+    nav a.cta {
+      background: var(--accent-red);
+      color: white;
+      font-weight: 600;
+    }
+
+    nav a.cta:hover {
+      background: #b91c1c;
+      box-shadow: 0 0 30px var(--accent-red-glow);
+    }
+
+    .mobile-menu {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* HERO SECTION - TWO COLUMNS */
+    .hero {
+      min-height: 100vh;
+      padding: 7rem 0 3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
       align-items: stretch;
     }
-    @media (max-width: 920px){
-      .hero{ grid-template-columns: 1fr; }
-      .brand{ min-width: 0; }
-    }
 
-    .panel{
-      border-radius: var(--radius2);
-      border: 2px solid rgba(20,19,24,.12);
-      background: rgba(255,255,255,.65);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-
-    .heroMedia{
+    /* Left Column - Primary Image */
+    .hero-media {
       position: relative;
-      min-height: 420px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      min-height: 560px;
     }
-    .heroMedia img{
-      width:100%;
-      height:100%;
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      display:block;
-      filter: contrast(1.05) saturate(1.05);
-    }
-    .heroTag{
-      position:absolute;
-      left: 14px;
-      top: 14px;
-      display:flex;
-      gap: 8px;
-      flex-wrap:wrap;
-    }
-    .chip{
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.55);
-      background: rgba(12,12,14,.72);
-      color: rgba(255,255,255,.92);
-      backdrop-filter: blur(8px);
-    }
-    .chip.red{ background: rgba(255,59,59,.82); border-color: rgba(255,255,255,.45); }
-    .chip.yellow{ background: rgba(255,212,0,.86); color: rgba(20,19,24,.92); border-color: rgba(20,19,24,.12); }
-
-    .heroCopy{
-      padding: 18px 18px 16px;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
+      display: block;
+      filter: contrast(1.05) saturate(1.1);
     }
 
-    .kicker{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .kicker span{
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(43,99,255,.10);
-      border: 1px solid rgba(43,99,255,.22);
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 11, 0.3) 0%,
+        transparent 30%,
+        transparent 60%,
+        rgba(10, 10, 11, 0.7) 100%
+      );
+      pointer-events: none;
     }
 
-    .heroCopy h2{
-      margin: 0;
-      font-family: var(--serif);
-      font-size: 34px;
+    .hero-tags {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 0.75rem;
+      border-radius: 100px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .tag.red {
+      background: rgba(220, 38, 38, 0.85);
+      color: white;
+    }
+
+    .tag.dark {
+      background: rgba(10, 10, 11, 0.75);
+      color: var(--text-primary);
+    }
+
+    .tag.gold {
+      background: rgba(251, 191, 36, 0.9);
+      color: #1a1a1a;
+    }
+
+    .hero-image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 1.5rem 1.5rem;
+      z-index: 2;
+    }
+
+    .hero-image-caption span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-image-caption p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 50ch;
+    }
+
+    /* Right Column - Content */
+    .hero-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.5rem 0.875rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+
+    .hero-badge .pulse {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-red);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hero-badge span {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent-red-glow); }
+      50% { box-shadow: 0 0 0 6px transparent; }
+    }
+
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900;
       line-height: 1.05;
-      letter-spacing: .2px;
-    }
-    .heroCopy p{
-      margin: 0;
-      color: rgba(20,19,24,.86);
-      font-size: 15px;
-      max-width: 60ch;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
     }
 
-    .actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      margin-top: 6px;
-    }
-    .btn{
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 2px solid rgba(20,19,24,.12);
-      background: rgba(255,255,255,.78);
-      box-shadow: 0 10px 25px rgba(0,0,0,.10);
-      font-weight: 800;
-    }
-    .btn.primary{
-      background: rgba(255,59,59,.12);
-      border-color: rgba(255,59,59,.35);
-    }
-    .btn .dot{
-      width:10px;height:10px;border-radius:999px;background:var(--accent);
-      box-shadow: 0 0 0 6px rgba(255,59,59,.12);
-    }
-    .btn.secondary .dot{ background: var(--blue); box-shadow: 0 0 0 6px rgba(43,99,255,.12); }
-
-    .factStrip{
-      margin-top: 10px;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(20,19,24,.22);
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 560px){
-      .factStrip{ grid-template-columns: 1fr; }
-    }
-    .fact{
-      border-radius: 16px;
-      background: rgba(20,19,24,.045);
-      border: 1px solid rgba(20,19,24,.10);
-      padding: 10px 10px 9px;
-    }
-    .fact b{
-      font-family: var(--mono);
-      font-size: 12px;
-      display:block;
-    }
-    .fact span{
-      font-size: 12px;
-      color: var(--muted);
+    .hero-content h1 .highlight {
+      color: var(--accent-red);
     }
 
-    /* Section grid */
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-    }
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
+    .hero-content h1 .gold {
+      color: var(--accent-gold);
     }
 
-    .section{
-      padding: 16px;
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
     }
 
-    .section h3{
-      margin: 0 0 10px;
-      font-family: var(--mono);
-      letter-spacing: .4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: rgba(20,19,24,.75);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .section h3 .bar{
-      flex:1;
-      height:2px;
-      background: linear-gradient(90deg, rgba(20,19,24,.2), transparent);
-      border-radius: 999px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
     }
 
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .item{
-      padding: 12px 12px 11px;
-      border-radius: 18px;
-      border: 1px solid rgba(20,19,24,.12);
-      background: rgba(255,255,255,.60);
-    }
-    .item a{
-      text-decoration:none;
-      font-weight: 900;
-      display:inline-block;
-    }
-    .item small{
-      display:block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 12px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
 
-    .twoCol{
-      display:grid;
+    .btn-primary {
+      background: var(--accent-red);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--accent-red-glow);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.15);
+    }
+
+    .btn-primary .dot {
+      background: white;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
+      margin-top: auto;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    /* MAIN CONTENT GRID */
+    .main-grid {
+      display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 560px){
-      .twoCol{ grid-template-columns: 1fr; }
+      gap: 1.5rem;
+      padding: 1.5rem 0 3rem;
     }
 
-    .card{
-      border-radius: 20px;
-      border: 1px solid rgba(20,19,24,.12);
-      background: rgba(255,255,255,.62);
-      padding: 12px;
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-    }
-    .icon{
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,19,24,.12);
-      background: rgba(255,212,0,.20);
-      display:grid;
-      place-items:center;
-      font-family: var(--mono);
-      font-weight: 900;
-    }
-    .card h4{
-      margin: 0;
-      font-size: 14px;
-      font-weight: 900;
-    }
-    .card p{
-      margin: 6px 0 0;
-      font-size: 13px;
-      color: rgba(20,19,24,.82);
-    }
-    .card a{ text-decoration:none; }
-
-    /* Footer */
-    footer{
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: var(--radius2);
-      border: 2px solid rgba(20,19,24,.12);
-      background: rgba(12,12,14,.86);
-      color: rgba(255,255,255,.90);
-      box-shadow: var(--shadow2);
-    }
-    footer .footgrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items:start;
-    }
-    @media (max-width: 820px){
-      footer .footgrid{ grid-template-columns: 1fr; }
-    }
-    footer h5{
-      margin: 0 0 6px;
-      font-family: var(--mono);
-      letter-spacing:.4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: rgba(255,255,255,.78);
-    }
-    footer p{
-      margin:0;
-      font-size: 13px;
-      color: rgba(255,255,255,.82);
-      max-width: 70ch;
-    }
-    .footlinks{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 8px;
-      justify-content:flex-end;
-      align-items:center;
-    }
-    .footlinks a{
-      color: rgba(255,255,255,.92);
-      text-decoration:none;
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.08);
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
     }
 
-    .highlight{
-      background: rgba(255,212,0,.25);
-      padding: 2px 6px;
+    .panel-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .panel-header .bar {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* Links List */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .link-item {
+      display: block;
+      padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+
+    .link-item:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .link-item h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      transition: color 0.2s ease;
+    }
+
+    .link-item:hover h4 {
+      color: var(--accent-red);
+    }
+
+    .link-item p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .new-badge {
+      background: rgba(251, 191, 36, 0.25);
+      color: var(--accent-gold);
+      padding: 2px 8px;
       border-radius: 6px;
+      font-size: 0.75rem;
+      margin-right: 6px;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+    }
+
+    .card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.875rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      flex-shrink: 0;
+    }
+
+    .card-content h4 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      transition: color 0.2s ease;
+    }
+
+    .card:hover .card-content h4 {
+      color: var(--accent-gold);
+    }
+
+    .card-content p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Image Strip */
+    .image-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+      margin-top: 1.25rem;
+    }
+
+    .image-strip-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 140px;
+    }
+
+    .image-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(30%);
+      transition: all 0.4s ease;
+    }
+
+    .image-strip-item:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      margin-top: 1.5rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-info h5 {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      max-width: 45ch;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.5rem 0.875rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-media {
+        min-height: 400px;
+      }
+      
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+      
+      .hero {
+        padding-top: 6rem;
+      }
+      
+      .hero-media {
+        min-height: 320px;
+      }
+      
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .hero-stats {
+        gap: 1rem;
+      }
+      
+      .image-strip {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -448,189 +751,213 @@
 <body>
   <div class="grain" aria-hidden="true"></div>
 
-  <div class="wrap">
-
-    <!-- TOP BAR -->
-    <header class="topbar" role="banner">
-      <a class="brand" href="index.html" aria-label="Home">
-        <div class="logoWrap" aria-hidden="true">
-          <img src="images/wbt-logo.png" alt="" />
-        </div>
-        <div>
-          <h1>Independent People's Tribunal<br/>on the World Bank in India</h1>
-          <p>archive • testimony • evidence • findings</p>
-        </div>
-      </a>
-
-      <nav class="nav" aria-label="Primary">
-        <a href="about_the.html">About</a>
-        <a href="who-involved.html">Participants</a>
-        <a href="judgement.html">Judgement</a>
-        <a href="issues.html">Issues</a>
-        <a href="media-coverage.html">Press</a>
-        <a class="cta" href="what-you-can-do.html">What you can do</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" aria-label="Intro">
-      <div class="panel heroMedia">
-        <img src="images/audience-hall.jpg" alt="Audience in an auditorium during the tribunal." />
-        <div class="heroTag">
-          <span class="chip red">Public record</span>
-          <span class="chip">New Delhi • Sept 2007</span>
-          <span class="chip yellow">Evidence + testimony</span>
-        </div>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo-group">
+          <div class="logo-mark">
+            <img src="images/wbt-logo.png" alt="">
+          </div>
+          <div class="logo-text">
+            <span>Independent People's Tribunal</span>
+            <span>World Bank in India</span>
+          </div>
+        </a>
+        
+        <nav aria-label="Primary navigation">
+          <a href="about_the.html">About</a>
+          <a href="who-involved.html">Participants</a>
+          <a href="judgement.html">Judgement</a>
+          <a href="issues.html">Issues</a>
+          <a href="media-coverage.html">Press</a>
+          <a href="what-you-can-do.html" class="cta">Take Action</a>
+        </nav>
+        
+        <button class="mobile-menu" aria-label="Menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <div class="panel heroCopy">
-        <div class="kicker">
-          <span>60+ Organizations</span>
-          <span>Presentation Archive</span>
-        </div>
-
-        <h2>Witness. Document. Challenge power.</h2>
-
-        <p>
-          The first People's Tribunal in India examining the World Bank brought together
-          a broad spectrum of society — <strong>150 affected people, experts, and activists from 60+ grassroots organizations</strong> —
-          to present research and evidence across four days of public hearings before an international jury.
-        </p>
-
-        <div class="actions">
-          <a class="btn primary" href="WB_Tribunal_Jury_Findings.pdf">
-            <span class="dot" aria-hidden="true"></span>
-            Read the Jury Findings (PDF)
-          </a>
-          <a class="btn secondary" href="video.html">
-            <span class="dot" aria-hidden="true"></span>
-            Watch testimonies
-          </a>
-        </div>
-
-        <div class="factStrip" aria-label="Highlights">
-          <div class="fact">
-            <b>4 days</b><span>of public hearings</span>
+  <!-- HERO - TWO COLUMNS -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        
+        <!-- Left Column: Primary Image -->
+        <div class="hero-media">
+          <img src="images/audience-hall.jpg" alt="Audience in an auditorium during the tribunal.">
+          <div class="hero-tags">
+            <span class="tag red">Public Record</span>
+            <span class="tag dark">New Delhi • Sept 2007</span>
+            <span class="tag gold">Evidence + Testimony</span>
           </div>
-          <div class="fact">
-            <b>700+ attendees</b><span>at JNU, New Delhi</span>
-          </div>
-          <div class="fact">
-            <b>13 jury members</b><span>international panel</span>
+          <div class="hero-image-caption">
+            <span>September 2007</span>
+            <p>Citizens, activists, and experts gathered to document the human cost of development policies.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- MAIN GRID -->
-    <section class="grid" aria-label="Content">
-      <!-- LEFT -->
-      <div class="panel section">
-        <h3>Latest + essential <span class="bar" aria-hidden="true"></span></h3>
-
-        <div class="list">
-          <div class="item">
-            <a href="http://www.orientblackswan.com/display.asp?categoryID=0&isbn=978-81-250-3864-1&detail=1" target="_blank">
-              <span class="highlight">NEW:</span> Tribunal Book Published
+        
+        <!-- Right Column: Content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <div class="pulse"></div>
+            <span>60+ Organizations</span>
+          </div>
+          
+          <h1>
+            <span class="highlight">Witness.</span> Document.<br>
+            <span class="gold">Challenge Power.</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            The first People's Tribunal in India examining the World Bank brought together a broad spectrum of society — <strong>150 affected people, experts, and activists from 60+ grassroots organizations</strong> — to present research and evidence across four days of public hearings before an international jury.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="WB_Tribunal_Jury_Findings.pdf" class="btn btn-primary">
+              <span class="dot"></span>
+              Read the Jury Findings (PDF)
             </a>
-            <small>"The World Bank in India: Undermining Sovereignty, Distorting Development"</small>
+            <a href="video.html" class="btn btn-secondary">
+              <span class="dot"></span>
+              Watch testimonies
+            </a>
           </div>
-
-          <div class="item">
-            <a href="arundhati-findings.html">Arundhati Roy's Response to the Bank</a>
-            <small>Video testimony from renowned author and activist.</small>
-          </div>
-
-          <div class="item">
-            <a href="judgement.html">The Judgement</a>
-            <small>Final findings and recommendations from the 13-member jury.</small>
-          </div>
-
-          <div class="item">
-            <a href="issues.html">Issues & themes</a>
-            <small>Water, energy, health, education, economy, human rights & more.</small>
-          </div>
-
-          <div class="item">
-            <a href="media-coverage.html">Media coverage</a>
-            <small>External reporting, commentary, and public responses.</small>
-          </div>
-
-          <div class="item">
-            <a href="who-involved.html">Who's involved</a>
-            <small>Jury, convenors, endorsers, and participating organizations.</small>
+          
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value">4 days</span>
+              <span class="stat-label">of public hearings</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">700+</span>
+              <span class="stat-label">attendees at JNU</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">13</span>
+              <span class="stat-label">jury members</span>
+            </div>
           </div>
         </div>
+        
       </div>
+    </div>
+  </section>
 
-      <!-- RIGHT -->
-      <div class="panel section">
-        <h3>Start anywhere <span class="bar" aria-hidden="true"></span></h3>
-
-        <div class="twoCol">
-          <div class="card">
-            <div class="icon" aria-hidden="true">01</div>
-            <div>
-              <h4><a href="about_the.html">About the Tribunal</a></h4>
+  <!-- MAIN CONTENT GRID -->
+  <section class="container">
+    <div class="main-grid">
+      
+      <!-- Left Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Latest + Essential</h3>
+          <span class="bar"></span>
+        </div>
+        
+        <div class="links-list">
+          <a href="http://www.orientblackswan.com/display.asp?categoryID=0&isbn=978-81-250-3864-1&detail=1" target="_blank" class="link-item">
+            <h4><span class="new-badge">NEW:</span> Tribunal Book Published</h4>
+            <p>"The World Bank in India: Undermining Sovereignty, Distorting Development"</p>
+          </a>
+          
+          <a href="arundhati-findings.html" class="link-item">
+            <h4>Arundhati Roy's Response to the Bank</h4>
+            <p>Video testimony from renowned author and activist.</p>
+          </a>
+          
+          <a href="judgement.html" class="link-item">
+            <h4>The Judgement</h4>
+            <p>Final findings and recommendations from the 13-member jury.</p>
+          </a>
+          
+          <a href="issues.html" class="link-item">
+            <h4>Issues & Themes</h4>
+            <p>Water, energy, health, education, economy, human rights & more.</p>
+          </a>
+          
+          <a href="media-coverage.html" class="link-item">
+            <h4>Media Coverage</h4>
+            <p>External reporting, commentary, and public responses.</p>
+          </a>
+          
+          <a href="who-involved.html" class="link-item">
+            <h4>Who's Involved</h4>
+            <p>Jury, convenors, endorsers, and participating organizations.</p>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Start Anywhere</h3>
+          <span class="bar"></span>
+        </div>
+        
+        <div class="cards-grid">
+          <a href="about_the.html" class="card">
+            <div class="card-icon">01</div>
+            <div class="card-content">
+              <h4>About the Tribunal</h4>
               <p>Purpose, context, and why this happened.</p>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="icon" aria-hidden="true">02</div>
-            <div>
-              <h4><a href="issues.html">Explore issues</a></h4>
+          </a>
+          
+          <a href="issues.html" class="card">
+            <div class="card-icon">02</div>
+            <div class="card-content">
+              <h4>Explore Issues</h4>
               <p>Follow evidence by theme and impact.</p>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="icon" aria-hidden="true">03</div>
-            <div>
-              <h4><a href="video.html">Audio & Video</a></h4>
+          </a>
+          
+          <a href="video.html" class="card">
+            <div class="card-icon">03</div>
+            <div class="card-content">
+              <h4>Audio & Video</h4>
               <p>Watch presentations and testimonies.</p>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="icon" aria-hidden="true">04</div>
-            <div>
-              <h4><a href="what-you-can-do.html">What you can do</a></h4>
+          </a>
+          
+          <a href="what-you-can-do.html" class="card">
+            <div class="card-icon">04</div>
+            <div class="card-content">
+              <h4>What You Can Do</h4>
               <p>Share, learn, organize — get involved.</p>
             </div>
+          </a>
+        </div>
+        
+        <!-- Image Strip -->
+        <div class="image-strip">
+          <div class="image-strip-item">
+            <img src="images/tribunal_photos_079.jpg" alt="Panel discussion at tribunal.">
+          </div>
+          <div class="image-strip-item">
+            <img src="images/speaker1.jpg" alt="Speaker at podium.">
           </div>
         </div>
-
-        <!-- Small visual strip -->
-        <div style="margin-top:12px; display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          <div class="panel" style="border-radius:22px; overflow:hidden; border:1px solid rgba(20,19,24,.12); box-shadow:none;">
-            <img src="images/newspaper.gif" alt="Newspaper coverage clipping." style="width:100%; height:160px; object-fit:cover; display:block;">
-          </div>
-          <div class="panel" style="border-radius:22px; overflow:hidden; border:1px solid rgba(20,19,24,.12); box-shadow:none;">
-            <img src="images/speaker1.jpg" alt="Speaker at podium." style="width:100%; height:160px; object-fit:cover; display:block;">
-          </div>
-        </div>
-
-        <p style="margin:12px 0 0; color:var(--muted); font-size:12px;">
-          India has borrowed more from the World Bank than any other country — currently $34 billion in debt across 106 active projects.
-        </p>
       </div>
-    </section>
+      
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer role="contentinfo">
-      <div class="footgrid">
-        <div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-info">
           <h5>About this archive</h5>
-          <p>
-            This site catalogues presentations, testimonies, and media from the Independent People's Tribunal on the World Bank held at
-            Jawaharlal Nehru University in September 2007. An ongoing effort to document alternatives to World Bank-driven development models.
-          </p>
-          <p style="margin-top:8px;">
-            <a href="mailto:secretariat@worldbanktribunal.org" style="color:var(--accent2);">secretariat@worldbanktribunal.org</a>
-          </p>
+          <p>This site catalogues presentations, testimonies, and media from the Independent People's Tribunal on the World Bank held at Jawaharlal Nehru University in September 2007. An ongoing effort to document alternatives to World Bank-driven development models.</p>
         </div>
-        <div class="footlinks" aria-label="Footer links">
+        
+        <div class="footer-links">
           <a href="WB_Tribunal_Jury_Findings.pdf">Jury Findings</a>
           <a href="media-coverage.html">Media</a>
           <a href="who-involved.html">Participants</a>
@@ -641,20 +968,31 @@
           <a href="network.html">Network</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-  </div>
-
-  <!-- Analytics -->
-  <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
-    try {
-      var pageTracker = _gat._getTracker("UA-9100274-1");
-      pageTracker._trackPageview();
-    } catch(err) {}
-  </script>
+<script>
+  // Smooth scroll-based background animation
+  (function() {
+    let ticking = false;
+    
+    function updateBackground() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+      document.body.style.setProperty('--scroll', scrollPercent.toFixed(3));
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateBackground);
+        ticking = true;
+      }
+    }, { passive: true });
+    
+    // Initial call
+    updateBackground();
+  })();
+</script>
 </body>
 </html>

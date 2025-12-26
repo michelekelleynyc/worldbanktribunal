@@ -1146,7 +1146,6 @@
     const navContainer = document.getElementById('carouselNav');
     const totalSlides = originalSlides.length;
     let autoplayInterval;
-    let isTransitioning = false;
 
     // Clone first slide and append to end for infinite loop effect
     const firstSlideClone = originalSlides[0].cloneNode(true);
@@ -1185,48 +1184,29 @@
     }
 
     window.moveSlide = function(direction) {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
       currentSlide += direction;
 
       // Handle boundaries
       if (currentSlide < 0) {
         currentSlide = totalSlides - 1;
-        updateCarousel(true);
       } else if (currentSlide > totalSlides) {
         currentSlide = 1;
-        updateCarousel(true);
-      } else {
-        updateCarousel(true);
       }
 
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 700);
-
+      updateCarousel(true);
       resetAutoplay();
     };
 
     function goToSlide(index) {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
       currentSlide = index;
       updateCarousel(true);
-
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 700);
-
       resetAutoplay();
     }
 
     function nextSlide() {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
       currentSlide++;
+
+      // Smoothly transition to the next slide (or clone)
       updateCarousel(true);
 
       // If we just moved to the clone (index = totalSlides),
@@ -1235,12 +1215,7 @@
         setTimeout(() => {
           currentSlide = 0;
           updateCarousel(false); // Jump instantly without transition
-          isTransitioning = false;
-        }, 700); // Match the CSS transition duration
-      } else {
-        setTimeout(() => {
-          isTransitioning = false;
-        }, 700);
+        }, 750); // Slightly longer than transition duration
       }
     }
 

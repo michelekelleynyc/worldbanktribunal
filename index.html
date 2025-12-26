@@ -1146,6 +1146,7 @@
     const navContainer = document.getElementById('carouselNav');
     const totalSlides = slides.length;
     let autoplayInterval;
+    let isTransitioning = false;
 
     // Create navigation dots
     for (let i = 0; i < totalSlides; i++) {
@@ -1158,32 +1159,69 @@
 
     const dots = document.querySelectorAll('.carousel-dot');
 
-    function updateCarousel() {
+    function updateCarousel(smooth = true) {
+      if (!smooth) {
+        track.style.transition = 'none';
+      }
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
       dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
       });
+      if (!smooth) {
+        // Force reflow to apply the non-transition state
+        track.offsetHeight;
+        track.style.transition = '';
+      }
     }
 
     window.moveSlide = function(direction) {
+      if (isTransitioning) return;
+
+      const oldSlide = currentSlide;
       currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      updateCarousel();
+
+      // Check if we're looping from last to first or first to last
+      if (oldSlide === totalSlides - 1 && currentSlide === 0) {
+        // Going from last to first - instant jump
+        updateCarousel(false);
+      } else if (oldSlide === 0 && currentSlide === totalSlides - 1) {
+        // Going from first to last - instant jump
+        updateCarousel(false);
+      } else {
+        updateCarousel(true);
+      }
+
       resetAutoplay();
     };
 
     function goToSlide(index) {
+      if (isTransitioning) return;
       currentSlide = index;
-      updateCarousel();
+      updateCarousel(true);
       resetAutoplay();
     }
 
     function nextSlide() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateCarousel();
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      currentSlide++;
+
+      if (currentSlide >= totalSlides) {
+        // We're past the last slide, smoothly transition to it
+        currentSlide = 0;
+      }
+
+      updateCarousel(true);
+
+      // Reset transitioning flag after animation completes
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
     }
 
     function startAutoplay() {
-      autoplayInterval = setInterval(nextSlide, 5000);
+      autoplayInterval = setInterval(nextSlide, 8000); // Increased from 5000ms to 8000ms (8 seconds)
     }
 
     function stopAutoplay() {

@@ -1142,13 +1142,17 @@
   (function() {
     let currentSlide = 0;
     const track = document.getElementById('carouselTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
+    const originalSlides = document.querySelectorAll('.carousel-slide');
     const navContainer = document.getElementById('carouselNav');
-    const totalSlides = slides.length;
+    const totalSlides = originalSlides.length;
     let autoplayInterval;
     let isTransitioning = false;
 
-    // Create navigation dots
+    // Clone first slide and append to end for infinite loop effect
+    const firstSlideClone = originalSlides[0].cloneNode(true);
+    track.appendChild(firstSlideClone);
+
+    // Create navigation dots (only for original slides)
     for (let i = 0; i < totalSlides; i++) {
       const dot = document.createElement('button');
       dot.className = 'carousel-dot';
@@ -1162,42 +1166,59 @@
     function updateCarousel(smooth = true) {
       if (!smooth) {
         track.style.transition = 'none';
+      } else {
+        track.style.transition = 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
       }
+
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      // Update dots (use modulo to handle the clone)
+      const activeDotIndex = currentSlide % totalSlides;
       dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+        dot.classList.toggle('active', index === activeDotIndex);
       });
+
       if (!smooth) {
         // Force reflow to apply the non-transition state
         track.offsetHeight;
-        track.style.transition = '';
       }
     }
 
     window.moveSlide = function(direction) {
       if (isTransitioning) return;
+      isTransitioning = true;
 
-      const oldSlide = currentSlide;
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      currentSlide += direction;
 
-      // Check if we're looping from last to first or first to last
-      if (oldSlide === totalSlides - 1 && currentSlide === 0) {
-        // Going from last to first - instant jump
-        updateCarousel(false);
-      } else if (oldSlide === 0 && currentSlide === totalSlides - 1) {
-        // Going from first to last - instant jump
-        updateCarousel(false);
+      // Handle boundaries
+      if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+        updateCarousel(true);
+      } else if (currentSlide > totalSlides) {
+        currentSlide = 1;
+        updateCarousel(true);
       } else {
         updateCarousel(true);
       }
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
 
       resetAutoplay();
     };
 
     function goToSlide(index) {
       if (isTransitioning) return;
+      isTransitioning = true;
+
       currentSlide = index;
       updateCarousel(true);
+
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 700);
+
       resetAutoplay();
     }
 
@@ -1206,22 +1227,25 @@
       isTransitioning = true;
 
       currentSlide++;
-
-      if (currentSlide >= totalSlides) {
-        // We're past the last slide, smoothly transition to it
-        currentSlide = 0;
-      }
-
       updateCarousel(true);
 
-      // Reset transitioning flag after animation completes
-      setTimeout(() => {
-        isTransitioning = false;
-      }, 700);
+      // If we just moved to the clone (index = totalSlides),
+      // wait for transition to complete, then instantly jump to real first slide
+      if (currentSlide === totalSlides) {
+        setTimeout(() => {
+          currentSlide = 0;
+          updateCarousel(false); // Jump instantly without transition
+          isTransitioning = false;
+        }, 700); // Match the CSS transition duration
+      } else {
+        setTimeout(() => {
+          isTransitioning = false;
+        }, 700);
+      }
     }
 
     function startAutoplay() {
-      autoplayInterval = setInterval(nextSlide, 8000); // Increased from 5000ms to 8000ms (8 seconds)
+      autoplayInterval = setInterval(nextSlide, 8000);
     }
 
     function stopAutoplay() {
